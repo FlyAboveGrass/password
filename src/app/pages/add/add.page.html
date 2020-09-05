@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>新增密码</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-card>
+  <ion-card-content>
+    <ion-list>
+      <ion-item>
+        <ion-label>密码类型</ion-label>
+        <ion-select placeholder="选择密码类型" [(ngModel)]="type">
+          <ion-select-option value="1">普通密码</ion-select-option>
+          <ion-select-option value="2">购物类</ion-select-option>
+          <ion-select-option value="3">社交类</ion-select-option>
+          <ion-select-option value="4">学习类</ion-select-option>
+          <ion-select-option value="5">生活类</ion-select-option>
+          <ion-select-option value="6">工作类</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">password for:</ion-label>
+        <ion-input placeholder="input your usage" [(ngModel)]="name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">password: </ion-label>
+        <ion-input [(ngModel)]="password" type="password" placeholder="input your password"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">confirm password: </ion-label>
+        <ion-input [(ngModel)]="password2" type="password" placeholder="input your password again"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-button (click)="submitPass()">
+      确认
+    </ion-button>
+  </ion-card-content>
+</ion-card>
+</ion-content>

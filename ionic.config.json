@@ -1,7 +1,8 @@
 {
   "name": "password-master",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }
