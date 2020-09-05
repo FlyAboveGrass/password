@@ -67,7 +67,7 @@ export class DbService {
           db.executeSql(
               `create table if not exists password (
                 id primary key,
-                pass,
+                password,
                 name,
                 type)`, null
           ).then(() => {
