@@ -3,11 +3,33 @@
     <ion-title>萍儿的小密码本</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content class="ion-padding">
-  <ion-list>
+<ion-content>
+
+  <!-- <ion-slides pager="false" [options]="slideOpts"  (ionSlideDidChange)="changePassType()" #slide>
+    <ion-slide *ngFor="let slide of passType;let key = index" (click)="selectSlideChanges(key)">
+      <ion-text>{{slide}}</ion-text>
+    </ion-slide>
+  </ion-slides> -->
+
+  <ion-card>
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col size="3" *ngFor="let item of passType;let key = index">
+          <div class="btn-container" (click)="changePassType(key)">
+            <i class="{{'iconfont ' + item.icon}}" [style.color]="item.color" ></i>
+            <ion-text>{{item.name}}</ion-text>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-list lines="none">
+    <ion-item-divider>
+      <h3>{{passType[activeType].name}}</h3>
+    </ion-item-divider>
     <ion-item-sliding *ngFor="let pass of passList">
-      <ion-item detail="true" (click)="showPassDetail(pass.id)">
-        <ion-icon slot="start"></ion-icon>
+      <ion-item (click)="showPassDetail(pass.id)">
         <ion-label>
           <h3>{{pass.name}}</h3>
         </ion-label>
@@ -20,7 +42,7 @@
   </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="jumpAddPass()">
+    <ion-fab-button (click)="jumpAddPass()" class="fab-color">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

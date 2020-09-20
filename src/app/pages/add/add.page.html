@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/main"></ion-back-button>
+      <ion-back-button defaultHref="/main" text=""></ion-back-button>
     </ion-buttons>
     <ion-title>新增密码</ion-title>
   </ion-toolbar>
@@ -10,34 +10,38 @@
 <ion-content>
 <ion-card>
   <ion-card-content>
-    <ion-list>
+    <ion-list class="input-list" lines="none" (click)="activeInput($event)">
       <ion-item>
         <ion-label>密码类型</ion-label>
-        <ion-select placeholder="选择密码类型" [(ngModel)]="type">
-          <ion-select-option value="1">普通密码</ion-select-option>
-          <ion-select-option value="2">购物类</ion-select-option>
-          <ion-select-option value="3">社交类</ion-select-option>
-          <ion-select-option value="4">学习类</ion-select-option>
-          <ion-select-option value="5">生活类</ion-select-option>
-          <ion-select-option value="6">工作类</ion-select-option>
+        <ion-select placeholder="类型" [(ngModel)]="type">
+          <!-- <ion-select-option value="1">常用</ion-select-option> -->
+          <ion-select-option value="2">购物</ion-select-option>
+          <ion-select-option value="3">社交</ion-select-option>
+          <ion-select-option value="4">学习</ion-select-option>
+          <ion-select-option value="5">生活</ion-select-option>
+          <ion-select-option value="6">工作</ion-select-option>
         </ion-select>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">password for:</ion-label>
-        <ion-input placeholder="input your usage" [(ngModel)]="name"></ion-input>
+        <ion-label position="floating">用途:</ion-label>
+        <ion-input placeholder=" " [(ngModel)]="name" (ionFocus)="activeInput($event)"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">password: </ion-label>
-        <ion-input [(ngModel)]="password" type="password" placeholder="input your password"></ion-input>
+        <ion-label position="floating">账号/用户名:</ion-label>
+        <ion-input placeholder=" " [(ngModel)]="username" (ionFocus)="activeInput($event)"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">confirm password: </ion-label>
-        <ion-input [(ngModel)]="password2" type="password" placeholder="input your password again"></ion-input>
+        <ion-label position="floating">密码: </ion-label>
+        <ion-input [(ngModel)]="password" type="password" placeholder=" " (ionFocus)="activeInput($event)"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">密码确认: </ion-label>
+        <ion-input [(ngModel)]="password2" type="password" placeholder=" " (ionFocus)="activeInput($event)"></ion-input>
       </ion-item>
     </ion-list>
-    <ion-button (click)="submitPass()">
-      确认
-    </ion-button>
   </ion-card-content>
 </ion-card>
+<ion-button (click)="submitPass()">
+  确认
+</ion-button>
 </ion-content>

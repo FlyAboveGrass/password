@@ -10,11 +10,13 @@ import { MessageService } from 'src/app/service/message.service';
 })
 export class AddPage implements OnInit {
 
-  private type = 1;
-  private name = '';
-  private password = '';
-  private password2 = '';
-  // 1.普通密码
+  public name = '';
+  public username = '';
+  public password = '';
+  public password2 = '';
+
+  public type = 2;
+  // 1.常用密码
   // 2.购物类
   // 3.社交类
   // 4.学习类
@@ -29,13 +31,18 @@ export class AddPage implements OnInit {
 
   ngOnInit() {
   }
+  activeInput(e) {
+    if (e.target.width === undefined) {
+      e.target.style.width = '100%';
+    }
+  }
   submitPass(){
     console.log('ready submit');
-    if (this.password === '') {
-      console.log('密码不能为空');
+    if (this.username === '' || this.password === '') {
+      console.log('用户名和密码不能为空');
       return ;
     }
-    if (this.password.length < 8){
+    if (this.password.length < 2){
       console.log('密码的长度不得少于8位');
       return ;
     }
@@ -45,8 +52,8 @@ export class AddPage implements OnInit {
       this.password2 = '';
       return ;
     }
-    const operation = `insert into password(id,name,password,type) values(
-                          ${Date.now().toString()}, '${this.name}', '${this.password}', '${this.type}'
+    const operation = `insert into password(id, name, username, password, times, type) values(
+                          ${Date.now().toString()}, '${this.name}', '${this.username}', '${this.password}', 0, '${this.type}'
                     )`;
     this.db.executeSql(operation).then(rs => {
       console.log('保存消息: 执行sql成功,name--pass', this.name, this.password);

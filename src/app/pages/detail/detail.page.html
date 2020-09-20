@@ -1,9 +1,26 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>detail</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/main"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{passDetail?.name}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-card>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label position="stacked">账号/用户名：</ion-label>
+          <ion-input readonly="true" [value]="passDetail?.username" (click)="copyUserName()" #username></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">密码：</ion-label>
+          <ion-input readonly="true" [value]="passDetail?.password" (click)="copyPass()" #password></ion-input>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>
