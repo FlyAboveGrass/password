@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { AndroidFingerprintAuth } from '@ionic-native/android-fingerprint-auth/ngx';
 import { DbService } from 'src/app/service/db.service';
 import { MessageService } from 'src/app/service/message.service';
 
@@ -25,7 +26,8 @@ export class MainPage implements OnInit {
   constructor(
     private  router: Router,
     private dbService: DbService,
-    private msg: MessageService
+    private msg: MessageService,
+    private androidFingerprintAuth: AndroidFingerprintAuth
   ) { }
 
   ngOnInit() {
@@ -68,11 +70,44 @@ export class MainPage implements OnInit {
 
   // 展示密码详细
   showPassDetail(id) {
-    this.router.navigate(['/detail'], {
-      queryParams: {
-        id
-      }
-    });
+    this.androidFingerprintAuth.isAvailable()
+      .then((result) => {
+        if (result.isAvailable){
+          this.androidFingerprintAuth.encrypt({ clientId: '密码本', username: '覃婉萍', password: '1108' })
+            .then(result2 => {
+              if (result2.withFingerprint) {
+                  console.log('Successfully encrypted credentials.');
+                  console.log('Encrypted credentials: ' + result2.token);
+                  this.router.navigate(['/detail'], {
+                    queryParams: {
+                      id
+                    }
+                  });
+              } else if (result2.withBackup) {
+                console.log('Successfully authenticated with backup password!');
+                this.router.navigate(['/detail'], {
+                  queryParams: {
+                    id
+                  }
+                });
+              } else {
+                console.log('Didn\'t authenticate!');
+              }
+            })
+            .catch(error => {
+              if (error === this.androidFingerprintAuth.ERRORS.FINGERPRINT_CANCELLED) {
+                console.log('Fingerprint authentication cancelled');
+              } else {
+                console.error(error);
+              }
+            });
+
+        } else {
+          // fingerprint auth isn't available
+        }
+      })
+      .catch(error => console.error(error));
+    
   }
 
   // 根据条件查询所有密码

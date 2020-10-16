@@ -8,19 +8,21 @@
 </ion-header>
 
 <ion-content>
-  <ion-card>
+  <ion-card class="card-msg">
     <ion-card-content>
-      <ion-list>
-        <ion-item>
-          <ion-label position="stacked">账号/用户名：</ion-label>
-          <ion-input readonly="true" [value]="passDetail?.username" (click)="copyUserName()" #username></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="stacked">密码：</ion-label>
-          <ion-input readonly="true" [value]="passDetail?.password" (click)="copyPass()" #password></ion-input>
-        </ion-item>
-      </ion-list>
+      {{this.msgPresent}}
     </ion-card-content>
   </ion-card>
+  
+  <ion-list lines="none" class="pass-msg">
+    <ion-item>
+      <ion-label position="stacked">账号/用户名：</ion-label>
+      <ion-input readonly="true" [value]="passDetail?.username" (click)="copyUserName()" #username></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">密码：</ion-label>
+      <ion-input readonly="true" [value]="passDetail?.password" (click)="copyPass()" #password></ion-input>
+    </ion-item>
+  </ion-list>
 
 </ion-content>

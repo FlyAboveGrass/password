@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { SQLite } from '@ionic-native/sqlite/ngx';
 import { Clipboard } from '@ionic-native/clipboard/ngx';
+import { AndroidFingerprintAuth } from '@ionic-native/android-fingerprint-auth/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +22,7 @@ import { Clipboard } from '@ionic-native/clipboard/ngx';
     SplashScreen,
     SQLite,
     Clipboard,
+    AndroidFingerprintAuth,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

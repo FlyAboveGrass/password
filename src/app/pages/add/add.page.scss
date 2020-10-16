@@ -50,8 +50,13 @@ ion-card{
 }
 
 ion-button{
-    position: fixed;
-    top: 44em;
+    position: absolute;
+    top: 40em;
     left: 50%;
     transform: translateX(-50%);
+    --background: #6D9445;
+    --background-activated: #6B3A23;
+    width: 4em;
+    height: 4em;
+    --border-radius: 50%;
 }
